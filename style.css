@@ -124,7 +124,7 @@ button:focus-visible{outline:2px solid var(--blue-400);outline-offset:2px}
 .toggle-wrap input{width:16px;height:16px;}
 
 /* ---------- THEME TOGGLE ---------- */
-#themeToggle, #videoButton {
+#themeToggle, #videoButton, #helpButton {
   position:fixed;
   width:56px;
   height:56px;
@@ -151,7 +151,11 @@ button:focus-visible{outline:2px solid var(--blue-400);outline-offset:2px}
   top:5rem;
   right:1rem;
 }
-#themeToggle:active, #videoButton:active {transform:scale(.9);}
+#helpButton {
+  top:9rem;
+  right:1rem;
+}
+#themeToggle:active, #videoButton:active, #helpButton:active {transform:scale(.9);}
 @keyframes wiggle{0%{transform:rotate(0)}50%{transform:rotate(-20deg)}100%{transform:rotate(0)}}
 #themeToggle.wiggle{animation:wiggle .4s ease;}
 #themeToggle span{filter:drop-shadow(0 1px 1px rgba(0,0,0,.2));}

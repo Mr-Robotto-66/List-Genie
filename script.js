@@ -217,3 +217,9 @@ const videoBtn = $('videoButton');
 videoBtn.onclick = () => {
   window.open('https://bcgov.sharepoint.com/:v:/r/sites/FOR-BCTSGIS/SIGG%20Document%20Library/Videos/LRM%20Tips%20and%20Tricks/List%20Genie%20v2.mp4?csf=1&web=1&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=rHyFa8', '_blank');
 };
+
+/* ---------- HELP MODAL ---------- */
+const helpBtn   = $('helpButton');
+const helpModal = $('helpModal');
+['closeHelp','helpBackdrop'].forEach(id=>$(id).onclick=()=>helpModal.style.display='none');
+helpBtn.onclick=()=>helpModal.style.display='flex';

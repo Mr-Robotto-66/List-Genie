@@ -21,6 +21,9 @@ if (localStorage.getItem('theme') === 'dark') {
 <!-- Video tutorial button -->
 <button id="videoButton" title="How-to Video"><span>🎬</span></button>
 
+<!-- Help button -->
+<button id="helpButton" title="Help & Features"><span>❓</span></button>
+
 <!-- MAIN CARD -->
 <div class="card">
   <h1 style="margin-top:0">List Genie 🧞‍♂️</h1>
@@ -98,6 +101,62 @@ if (localStorage.getItem('theme') === 'dark') {
       <input id="customChars" placeholder="e.g. @#$%" style="width:100%;margin-top:.4rem;">
     </label>
     <button id="applyExclude" style="margin-top:1rem;background:var(--red-500);color:var(--text-invert);">Apply</button>
+  </div>
+</div>
+
+<!-- HELP MODAL -->
+<div id="helpModal" class="modal">
+  <div id="helpBackdrop" class="modalBackdrop"></div>
+  <div class="modalCard" style="max-width: 700px;">
+    <button id="closeHelp" class="closeBtn">&times;</button>
+    <h2 style="margin-top:0">List Genie Features & Tips 🧞‍♂️</h2>
+    <div style="max-height: 70vh; overflow-y: auto; padding-right: 10px;">
+      
+      <h3>🚀 Core Features</h3>
+      <ul style="line-height: 1.6;">
+        <li><strong>Convert Lists:</strong> Transform a list of items into various formats:
+          <ul>
+            <li><em>Comma Delimited</em>: item1, item2, item3</li>
+            <li><em>Definition Query</em>: ('item1', 'item2') - Great for SQL IN clauses!</li>
+            <li><em>Query Builder</em>: item1 | item2 - Useful for regex or filters.</li>
+          </ul>
+        </li>
+        <li><strong>Compare Lists:</strong> Click <strong>"➕ Add 2nd List to Compare"</strong> to input a second dataset.
+          <ul>
+            <li>Finds matching items (intersection).</li>
+            <li>Identifies items unique to List 1 or List 2.</li>
+          </ul>
+        </li>
+        <li><strong>Clean Data:</strong> Use <strong>"🚫 Excluded Characters"</strong> to strip unwanted symbols (like trailing commas or dots) before processing.</li>
+      </ul>
+
+      <h3>💡 Pro Tips</h3>
+      <ul style="line-height: 1.6;">
+        <li><strong>Split on Newline:</strong> Check this if your data is row-based (like from Excel). Uncheck it if your data is space-separated.</li>
+        <li><strong>Case Sensitivity:</strong> By default, "Apple" and "apple" are treated as the same item (case-insensitive). Check "Case Sensitive" to treat them as different.</li>
+        <li><strong>Info Button:</strong> Click <strong>"ℹ️ Additional List Info"</strong> after converting to see stats like duplicate counts and total unique items.</li>
+      </ul>
+
+      <h3>📝 Examples</h3>
+      <div style="background: rgba(0,0,0,0.05); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+        <strong>Scenario: SQL Query Prep</strong><br>
+        <em>Input:</em><br>
+        <code>
+        ID_123<br>
+        ID_456
+        </code><br>
+        <em>Settings:</em> Select "Definition Query"<br>
+        <em>Result:</em> <code>('ID_123', 'ID_456')</code>
+      </div>
+      
+      <div style="background: rgba(0,0,0,0.05); padding: 10px; border-radius: 8px;">
+        <strong>Scenario: Cleaning Text</strong><br>
+        <em>Input:</em> <code>item1, item2, item3.</code><br>
+        <em>Action:</em> Open "Excluded Characters", check "Comma (,)" and "Period (.)".<br>
+        <em>Result (Comma Delimited):</em> <code>item1, item2, item3</code>
+      </div>
+
+    </div>
   </div>
 </div>
 
