@@ -167,6 +167,8 @@ button:focus-visible{outline:2px solid var(--blue-400);outline-offset:2px}
   display:none;
   align-items:center;
   justify-content:center;
+  padding:1rem;
+  box-sizing:border-box;
   z-index:10001;
 }
 .modalBackdrop{
@@ -183,6 +185,64 @@ button:focus-visible{outline:2px solid var(--blue-400);outline-offset:2px}
   background:var(--glass);
   border:1px solid var(--glass-border);
   color:var(--text-main);
+}
+#infoModal .modalCard{
+  display:flex;
+  flex-direction:column;
+  max-height:min(80vh,720px);
+  width:min(600px,100%);
+}
+#infoModal h2{
+  flex:0 0 auto;
+  padding-right:2rem;
+}
+#infoBody{
+  flex:1 1 auto;
+  display:flex;
+  flex-direction:column;
+  gap:.9rem;
+  min-height:0;
+  overflow-y:auto;
+  overflow-x:hidden;
+  padding-right:.35rem;
+}
+.infoTextBlock{
+  margin:0;
+  padding:.85rem 1rem;
+  border-radius:10px;
+  background:rgba(255,255,255,.25);
+  border:1px solid var(--glass-border);
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+.infoSection{
+  display:flex;
+  flex-direction:column;
+  gap:.4rem;
+}
+.infoSection h3{
+  margin:0;
+  font-size:1rem;
+}
+.infoList{
+  width:100%;
+  min-height:8rem;
+  max-height:16rem;
+  padding:.85rem 1rem;
+  box-sizing:border-box;
+  resize:vertical;
+  border-radius:10px;
+  border:1px solid var(--glass-border);
+  background:rgba(255,255,255,.2);
+  color:var(--text-main);
+  font:inherit;
+  font-family:monospace;
+  line-height:1.4;
+}
+[data-theme="dark"] .infoTextBlock,
+[data-theme="dark"] .infoList{
+  background:rgba(0,0,0,.2);
 }
 .closeBtn{
   position:absolute;

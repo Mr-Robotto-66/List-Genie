@@ -87,6 +87,35 @@ function process(text){
   return buildStats(counts);
 }
 
+function createInfoTextBlock(text){
+  const pre=document.createElement('pre');
+  pre.className='infoTextBlock';
+  pre.textContent=text;
+  return pre;
+}
+
+function createInfoListSection(title, items){
+  const section=document.createElement('section');
+  section.className='infoSection';
+
+  const heading=document.createElement('h3');
+  heading.textContent=title;
+
+  const listBox=document.createElement('textarea');
+  listBox.className='infoList';
+  listBox.readOnly=true;
+  listBox.spellcheck=false;
+  listBox.value=items.length?items.join('\n'):'(none)';
+
+  section.append(heading, listBox);
+  return section;
+}
+
+function renderInfoContent(nodes){
+  infoBody.replaceChildren(...nodes);
+  infoBody.scrollTop=0;
+}
+
 /* ---------- EASTER EGG ---------- */
 function shouldRain(txt){
   return txt.trim().toLowerCase()==='make it rain';
@@ -173,21 +202,23 @@ copy2Btn.onclick = async() => {
 /* ---------- INFO MODAL ---------- */
 infoBtn.onclick=()=>{
   if(!stats1){
-    infoBody.textContent='No data yet. Convert first!';
+    renderInfoContent([createInfoTextBlock('No data yet. Convert first!')]);
   }else if(!stats2){
-    infoBody.textContent=
-`Total values entered : ${stats1.total}
+    renderInfoContent([
+      createInfoTextBlock(`Total values entered : ${stats1.total}
 Unique values kept    : ${stats1.unique}
-Duplicates removed    : ${stats1.dupes}${stats1.dupes?'\n  → '+stats1.dupList.join(', '):''}
+Duplicates removed    : ${stats1.dupes}
 
-Longest token length  : ${stats1.lenMax}`;
+Longest token length  : ${stats1.lenMax}`),
+      createInfoListSection(`Duplicate values (${stats1.dupList.length})`, stats1.dupList)
+    ]);
   }else{
     const set1=new Set(stats1.uniq), set2=new Set(stats2.uniq);
     const matches=[...set1].filter(x=>set2.has(x));
     const only1=[...set1].filter(x=>!set2.has(x));
     const only2=[...set2].filter(x=>!set1.has(x));
-    infoBody.textContent=
-`— List 1 —
+    renderInfoContent([
+      createInfoTextBlock(`— List 1 —
 Total entries         : ${stats1.total}
 Unique values kept    : ${stats1.unique}
 
@@ -197,13 +228,11 @@ Unique values kept    : ${stats2.unique}
 
 =========== Comparison ===========
 Matching values (${matches.length}) :
-${matches.join(', ') || '(none)'}
-
-Only in List 1 (${only1.length}) :
-${only1.join(', ') || '(none)'}
-
-Only in List 2 (${only2.length}) :
-${only2.join(', ') || '(none)'}`;
+See sections below for the full value lists.`),
+      createInfoListSection(`Matching values (${matches.length})`, matches),
+      createInfoListSection(`Only in List 1 (${only1.length})`, only1),
+      createInfoListSection(`Only in List 2 (${only2.length})`, only2)
+    ]);
   }
   infoModal.style.display='flex';
 };
